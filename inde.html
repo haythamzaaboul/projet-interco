@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Server Test - ENSEEIHT Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 20px 0;
+        }
+
+        .status-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status-value {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .success {
+            color: #28a745;
+        }
+
+        .features {
+            margin: 30px 0;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #dee2e6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .project-info {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖥️ Web Server Test</h1>
+            <p class="subtitle">ENSEEIHT - N7EN06C Interconnexion Project</p>
+        </header>
+
+        <div class="divider"></div>
+
+        <div class="project-info">
+            <strong>Project:</strong> Interconnexion (Internet & Graphes)<br>
+            <strong>School:</strong> ENSEEIHT - Semester 7
+        </div>
+
+        <div class="status-section">
+            <h2 style="margin-bottom: 15px; color: #333;">Server Status</h2>
+            <div class="status-item">
+                <span class="status-label">Server Status:</span>
+                <span class="status-value success">✓ Running</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Connection:</span>
+                <span class="status-value success">✓ Active</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Response Time:</span>
+                <span class="status-value">< 100ms</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">HTML Rendering:</span>
+                <span class="status-value success">✓ Success</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2 style="color: #333; margin-bottom: 15px;">Tested Features</h2>
+            <ul class="feature-list">
+                <li>✓ HTML5 Structure and Rendering</li>
+                <li>✓ CSS Styling and Gradients</li>
+                <li>✓ Responsive Design</li>
+                <li>✓ Server Request/Response Cycle</li>
+                <li>✓ Content Delivery</li>
+            </ul>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-primary" onclick="alert('Web server is working correctly!')">Test Server</button>
+            <button class="btn-secondary" onclick="location.reload()">Refresh</button>
+        </div>
+
+        <footer>
+            <p>Web Server Test Page | ENSEEIHT Engineering School</p>
+            <p>© 2024 N7EN06C Project</p>
+        </footer>
+    </div>
+</body>
+</html>
