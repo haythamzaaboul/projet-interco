@@ -1,4 +1,3 @@
-sudo su
 ip link set dev enp1s0f0 up
 ip link set dev enp1s0f1 up
 ip a a 120.0.65.3/24 dev enp1s0f0
