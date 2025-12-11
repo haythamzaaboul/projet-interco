@@ -12,13 +12,6 @@ ZONE_FILE="/etc/bind/db.$DOMAIN"
 echo "[*] Domaine : $DOMAIN"
 echo "[*] Adresse IP du serveur web : $WEB_IP"
 
-if ! dpkg -l | grep -q "^ii  bind9"; then
-    echo "[!] Bind9 non installé. Installation..."
-    apt update && apt install -y bind9 bind9utils bind9-doc
-else
-    echo "[✓] Bind9 déjà installé."
-fi
-
 if ! grep -q "$DOMAIN" /etc/bind/named.conf.local; then
     cat <<EOF >> /etc/bind/named.conf.local
 
@@ -57,8 +50,6 @@ fi
 named-checkconf
 named-checkzone "$DOMAIN" "$ZONE_FILE"
 
-systemctl restart named
-systemctl enable named
 systemctl restart bind9
 systemctl enable bind9
 
