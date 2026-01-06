@@ -24,6 +24,8 @@
 | Page HTML           | Gérer la Page HTML de vitrine                | Haytham              |   Terminé  | 19/11/2025           |
 | WEB                 | Créer le serveur WEB                         | Tristan, ALexandre   |   En cours | 19/11/2025           |
 | Créer dépot Github  |                                              | Haytham              |   Terminé  | 19/11/2025           |
+| Routage             | le routages OSPFD                            | Haytham              |   Terminé  | 06/01/2026           |
+| FTP                 | Configuration du routeur OSPFD               | Haytham              |   En cours | 06/01/2026           |
 
 ---
 
