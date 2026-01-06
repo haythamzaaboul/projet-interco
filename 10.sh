@@ -40,7 +40,7 @@ chown quagga:quagga /etc/quagga/daemons
 chmod 640 /etc/quagga/daemons
 systemctl restart quagga
 
-# Config OSPF non interactive
+# Config OSPF
 vtysh \
   -c "configure terminal" \
   -c "router ospf" \
@@ -49,3 +49,5 @@ vtysh \
   -c "router-id 10.10.10.10" \
   -c "end" \
   -c "write"
+
+ip route add default via 120.0.65.3
