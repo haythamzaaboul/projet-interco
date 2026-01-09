@@ -1,0 +1,92 @@
+#!/bin/bash
+set -e
+
+##################################
+# ROUTEUR 9 - DHCP / NAT / OSPF
+##################################
+
+### Interfaces
+ip link set enp1s0f0 up
+ip link set enp1s0f1 up
+
+ip addr add 120.0.65.1/24 dev enp1s0f0 || true
+ip addr add 120.0.66.254/24 dev enp1s0f1 || true
+
+### Activation du routage IP
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+##################################
+# NETTOYAGE IPTABLES
+##################################
+iptables -F
+iptables -t nat -F
+iptables -X
+
+##################################
+# NAT
+##################################
+iptables -t nat -A POSTROUTING -o enp1s0f0 -j MASQUERADE
+
+##################################
+# FIREWALL
+##################################
+iptables -A FORWARD -i enp1s0f1 -o enp1s0f0 -j ACCEPT
+iptables -A FORWARD -i enp1s0f0 -o enp1s0f1 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+##################################
+# DNAT - SERVICES
+##################################
+
+WEB=120.0.66.10
+DNS=120.0.66.20
+VOIP=120.0.66.30
+
+# WEB
+iptables -t nat -A PREROUTING -i enp1s0f0 -p tcp --dport 80  -j DNAT --to-destination $WEB:80
+iptables -t nat -A PREROUTING -i enp1s0f0 -p tcp --dport 443 -j DNAT --to-destination $WEB:443
+
+# DNS
+iptables -t nat -A PREROUTING -i enp1s0f0 -p udp --dport 53 -j DNAT --to-destination $DNS:53
+iptables -t nat -A PREROUTING -i enp1s0f0 -p tcp --dport 53 -j DNAT --to-destination $DNS:53
+
+# VOIP SIP
+iptables -t nat -A PREROUTING -i enp1s0f0 -p udp --dport 5060 -j DNAT --to-destination $VOIP:5060
+
+# VOIP RTP
+iptables -t nat -A PREROUTING -i enp1s0f0 -p udp --dport 9000:10999 -j DNAT --to-destination $VOIP
+
+##################################
+# DHCP - dnsmasq
+##################################
+
+cat <<EOF > /etc/dnsmasq.conf
+interface=enp1s0f0
+dhcp-range=120.0.65.100,120.0.65.200,12h
+dhcp-option=3,120.0.65.1
+dhcp-option=6,120.0.66.20
+EOF
+
+systemctl restart dnsmasq
+systemctl enable dnsmasq
+
+##################################
+# QUAGGA - OSPF
+##################################
+
+cp ./daemons /etc/quagga/daemons
+chown quagga:quagga /etc/quagga/daemons
+chmod 640 /etc/quagga/daemons
+systemctl restart quagga
+
+vtysh <<EOF
+configure terminal
+ router ospf
+  router-id 9.9.9.9
+  network 120.0.65.0/24 area 1
+  network 120.0.66.0/24 area 1
+ exit
+end
+write
+EOF
+
+echo "✔ Routeur 9 configuré (enp1s0f0 / enp1s0f1)"
