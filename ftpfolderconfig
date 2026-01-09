@@ -1,0 +1,26 @@
+#!/bin/bash
+# ======================================
+# Préparation des dossiers FTP (vsftpd)
+# Racine non writable + upload writable
+# ======================================
+
+set -e
+
+echo "[+] Arrêt du service vsftpd..."
+sudo systemctl stop vsftpd
+
+echo "[+] Création de la racine FTP..."
+sudo mkdir -p /srv/ftp
+
+echo "[+] Configuration des permissions de la racine (lecture seule)..."
+sudo chown root:root /srv/ftp
+sudo chmod 755 /srv/ftp
+
+echo "[+] Création du dossier d'upload..."
+sudo mkdir -p /srv/ftp/upload
+
+echo "[+] Configuration des permissions du dossier upload..."
+sudo chown nobody:nogroup /srv/ftp/upload
+sudo chmod 777 /srv/ftp/upload
+
+echo "[+] Dossiers FTP prêts."
