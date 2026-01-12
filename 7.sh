@@ -58,7 +58,7 @@ systemctl restart quagga
 vtysh \
   -c "configure terminal" \
   -c "router ospf" \
-  -c "ospf router-id 10.10.10.10" \
+  -c "ospf router-id 7.7.7.7" \
   -c "network 120.0.65.0/24 area 1" \
   #-c "network 192.168.2.0/24 area 1" \
   -c "end" \
