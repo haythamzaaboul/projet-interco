@@ -322,23 +322,23 @@ ss -tlnp | grep vsftpd
 <tr>
 <td align="center">
 <b>Haytham ZAABOUL</b><br>
-<sub>Infrastructure & Routage</sub>
+<sub>Infrastructure & Routage & FTP & securité</sub>
 </td>
 <td align="center">
 <b>Arthur Sauvezie</b><br>
-<sub>Services & Sécurité</sub>
+<sub>Partie privé</sub>
 </td>
 <td align="center">
 <b>Anas</b><br>
-<sub>DNS & Configuration</sub>
+<sub>DNS & VOIP</sub>
 </td>
 <td align="center">
 <b>Tristan</b><br>
-<sub>Firewall & Tests</sub>
+<sub>Auth</sub>
 </td>
 <td align="center">
 <b>Mohib</b><br>
-<sub>Documentation & FTP</sub>
+<sub>VPN</sub>
 </td>
 </tr>
 </table>
